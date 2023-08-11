@@ -6,19 +6,12 @@
 
 const value = document.querySelector("#hours");
 const input = document.querySelector("#estimatedTime");
-value.textContent = input.value;
+var acceptEl = $("#taskAccept");
+var denyEl = $("#taskReject");
+
+value.textContent = "Estimated Work Hours: 40";
+
 input.addEventListener("input", (event) => {
   value.textContent = `Estimated Work Hours: ${event.target.value}`;
 });
 
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
-
-// hoursEl.HTML = `Hours estimated: ${sliderEl.value}`;
-
-// sliderEl.onchange = function() {
-//     hoursEl.HTML = `Hours estimated: ${sliderEl.value}`;
-//     console.log(sliderEl.value)
-//     return (sliderEl.value);
-//   }
