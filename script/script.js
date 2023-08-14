@@ -17,7 +17,19 @@ saveButton.click(function () {
         })
         .then(function (data) {
             console.log(data);
-
+            $("#weatherDayOne").empty()
+            const html = $(`
+               <div class="card col-12">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.city.name} ${data.list[3].dt_txt.split(' ')[0]} ${data.list[3].weather[0].description}</h5>
+                        <p>location: ${data.city.coord.lat} lat, ${data.city.coord.lon} lon </p>
+                        <p>Temp: ${data.list[3].main.temp}&#8457</p>
+                        <p>Wind: ${data.list[3].wind.speed} MPH</p>
+                        <p>humidity: ${data.list[3].main.humidity}%</p>
+                    </div>
+                </div>
+            `)
+            $("#weatherDayOne").append(html);
         })
         .catch(function (error) {
             console.error('Error fetching weather data: ', error);
