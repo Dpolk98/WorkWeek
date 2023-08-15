@@ -14,7 +14,7 @@ var issueType = document.getElementById("issueType");
 var assignedEmployee = document.getElementById("assignedEmployee");
 var estimatedTime = document.getElementById("estimatedTime");
 
-value.textContent = "Estimated Work Hours: 40";
+// value.textContent = "Estimated Work Hours: 40";
 
 input.addEventListener("input", (event) => {
   value.textContent = `Estimated Work Hours: ${event.target.value}`;
@@ -22,9 +22,12 @@ input.addEventListener("input", (event) => {
 
 
 function addNewIssue() {
-  var issueContainer = `<li class="m-3">Estimated Time: ${estimatedTime.value} Hours</li>`;
+  const html = $(`<li class="m-3">Day: ${workDay.value}</li>
+  <li class="m-3"> Issue: ${issueType.value}</li>
+  <li class="m-3"> Employee: ${assignedEmployee.value}</li>
+  <li class="m-3">Estimated Time: ${estimatedTime.value} Hours</li>`);
 
-  newIssueEl.innerHTML.append(issueContainer);
+  $("#newIssues").append(html);
 
 };
 
