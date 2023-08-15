@@ -8,11 +8,11 @@ const value = document.querySelector("#hours");
 const input = document.querySelector("#estimatedTime");
 var acceptEl = $("#taskAccept");
 var denyEl = $("#taskReject");
+var newIssueEl = document.getElementById("newIssues");
 var workDay = document.getElementById("workDay");
 var issueType = document.getElementById("issueType");
 var assignedEmployee = document.getElementById("assignedEmployee");
-var estimatedTime = document.getElementById("estimatedTime")
-var newIssuesEl = document.getElementById("newIssues");
+var estimatedTime = document.getElementById("estimatedTime");
 
 value.textContent = "Estimated Work Hours: 40";
 
@@ -21,12 +21,12 @@ input.addEventListener("input", (event) => {
 });
 
 
-acceptEl.on("click", function(){
-    localStorage.setItem(`taskDay`, workDay.value);
-    localStorage.setItem(`taskType`, issueType.value);
-    localStorage.setItem(`taskEmployee`, assignedEmployee.value);
-    localStorage.setItem(`taskTime`, estimatedTime.value);
-    newIssuesEl.append(localStorage.getItem(`taskDay`));
-    console.log(localStorage.getItem(`taskDay`));
-})
+function addNewIssue() {
+  var issueContainer = `<li class="m-3">Estimated Time: ${estimatedTime.value} Hours</li>`;
+
+  newIssueEl.innerHTML.append(issueContainer);
+
+};
+
+acceptEl.on("click", addNewIssue);
 
