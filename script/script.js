@@ -20,9 +20,9 @@ saveButton.click(function () {
             console.log(data);
             $("#weatherDayOne").empty()
             const html = $(`
-               <div class="card col-12">
+               <div class="card col-4">
                     <div class="card-body">
-                        <h5 class="card-title">${data.city.name} ${data.list[3].dt_txt.split(' ')[0]} ${data.list[3].weather[0].description}</h5>
+                        <h5 class="card-title">${data.city.name} ${data.list[3].dt_txt.split(' ')[0]} <img src="https://openweathermap.org/img/wn/${data.list[3].weather[0].icon}@2x.png" alt="img"></h5>
                         <p>location: ${data.city.coord.lat} lat, ${data.city.coord.lon} lon </p>
                         <p>Temp: ${data.list[3].main.temp}&#8457</p>
                         <p>Wind: ${data.list[3].wind.speed} MPH</p>
