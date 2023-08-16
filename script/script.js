@@ -7,7 +7,7 @@ var saveButton = $('#search');
 var city = $('.city')
 saveButton.click(function () {
     var city = $('#cityInput').val();
-    var weatherAPI = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=84f583d3b70337f7a927c7209d583c78';
+    var weatherAPI = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=84f583d3b70337f7a927c7209d583c78';
     
     console.log(city);
     // console.log(geoCode);
