@@ -14,7 +14,7 @@ var issueType = document.getElementById("issueType");
 var assignedEmployee = document.getElementById("assignedEmployee");
 var estimatedTime = document.getElementById("estimatedTime");
 
-// value.textContent = "Estimated Work Hours: 40";
+value.textContent = "Estimated Work Hours: 40";
 
 input.addEventListener("input", (event) => {
   value.textContent = `Estimated Work Hours: ${event.target.value}`;
@@ -32,4 +32,3 @@ function addNewIssue() {
 };
 
 acceptEl.on("click", addNewIssue);
-
