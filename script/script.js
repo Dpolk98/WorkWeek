@@ -58,9 +58,9 @@ input.addEventListener("input", (event) => {
 
 
 function addNewIssue() {
-  const html = $(`<li class="m-3"> Issue: ${issueType.value}</li>
+  const html = $(`<li class="m-3 border-top border-dark"> Issue: ${issueType.value}</li>
   <li class="m-3"> Employee: ${assignedEmployee.value}</li>
-  <li class="m-3">Estimated Time: ${estimatedTime.value} Hours</li>`);
+  <li class="m-3 border-bottom border-dark">Estimated Time: ${estimatedTime.value} Hours</li>`);
 
   if (workDay.value === "monday") {
     $("#mondayIssues").append(html)
