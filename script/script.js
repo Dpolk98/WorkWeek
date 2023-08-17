@@ -1,8 +1,19 @@
 // 84f583d3b70337f7a927c7209d583c78
 // 83689c9844b7838e59ff072878e7fe48 JO weather key
-// issue creation
-// add weather inergration so that when a user inputs their work location the weather will pop up for that day
-// and also show lat long for their location.
+
+
+//Issue Creation variable delcaration
+const value = document.querySelector("#hours");
+const input = document.querySelector("#estimatedTime");
+var acceptEl = $("#taskAccept");
+var denyEl = $("#taskReject");
+var workDay = document.getElementById("workDay");
+var issueType = document.getElementById("issueType");
+var assignedEmployee = document.getElementById("assignedEmployee");
+var estimatedTime = document.getElementById("estimatedTime");
+
+//Weather Search API
+
 var saveButton = $('#search');
 var city = $('.city')
 saveButton.click(function () {
@@ -35,4 +46,44 @@ saveButton.click(function () {
         .catch(function (error) {
             console.error('Error fetching weather data: ', error);
         });
+})
+
+//Issue Creation
+
+value.textContent = "Estimated Work Hours: 40";
+
+input.addEventListener("input", (event) => {
+  value.textContent = `Estimated Work Hours: ${event.target.value}`;
+});
+
+
+function addNewIssue() {
+  const html = $(`<li class="m-3"> Issue: ${issueType.value}</li>
+  <li class="m-3"> Employee: ${assignedEmployee.value}</li>
+  <li class="m-3">Estimated Time: ${estimatedTime.value} Hours</li>`);
+
+  if (workDay.value === "monday") {
+    $("#mondayIssues").append(html)
+  } 
+
+  else if (workDay.value == "tuesday") {
+    $("#tuesdayIssues").append(html)
+  }
+
+  else if (workDay.value == "wednesday") {
+    $("#wendesdayIssues").append(html)
+  }
+
+  else if (workDay.value == "thursday") {
+    $("#thursdayIssues").append(html)
+  }
+
+  else if (workDay.value == "friday") {
+    $("#fridayIssues").append(html)
+  }
+};
+
+acceptEl.on("click", addNewIssue);
+acceptEl.on("click", function() {
+    console.log("clicked")
 })
