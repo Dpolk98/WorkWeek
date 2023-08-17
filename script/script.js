@@ -50,7 +50,7 @@ saveButton.click(function () {
 
 //Issue Creation
 
-value.textContent = "Estimated Work Hours: 40";
+value.textContent = "Estimated Work Hours: 20";
 
 input.addEventListener("input", (event) => {
   value.textContent = `Estimated Work Hours: ${event.target.value}`;
@@ -71,7 +71,7 @@ function addNewIssue() {
   }
 
   else if (workDay.value == "wednesday") {
-    $("#wendesdayIssues").append(html)
+    $("#wednesdayIssues").append(html)
   }
 
   else if (workDay.value == "thursday") {
