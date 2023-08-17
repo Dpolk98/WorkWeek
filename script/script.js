@@ -30,28 +30,34 @@ saveButton.click(function () {
     // console.log(geoCode);
 
     fetch(weatherAPI)
-        .then(function (repsonse) {
-            return repsonse.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            $("#weatherDayOne").empty()
-            const html = $(`
-               <div class="card col-4">
+    .then(function (repsonse) {
+      return repsonse.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      $("#weatherDayOne").empty()
+      for (let i = 0; i < data.list.length; i++) {
+        if (i % 8 === 0) {
+          var day = data.list[i]
+          const html = $(`
+               <div class="card col-2">
                     <div class="card-body">
-                        <h5 class="card-title">${data.city.name} ${data.list[3].dt_txt.split(' ')[0]} <img src="https://openweathermap.org/img/wn/${data.list[3].weather[0].icon}@2x.png" alt="img"></h5>
+                        <h5 class="card-title">${data.city.name} ${day.dt_txt.split(' ')[0]} <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="img"></h5>
                         <p>location: ${data.city.coord.lat} lat, ${data.city.coord.lon} lon </p>
-                        <p>Temp: ${data.list[3].main.temp}&#8457</p>
-                        <p>Wind: ${data.list[3].wind.speed} MPH</p>
-                        <p>humidity: ${data.list[3].main.humidity}%</p>
+                        <p>Temp: ${day.main.temp}&#8457</p>
+                        <p>Wind: ${day.wind.speed} MPH</p>
+                        <p>humidity: ${day.main.humidity}%</p>
                     </div>
                 </div>
             `)
-            $("#weatherDayOne").append(html);
-        })
-        .catch(function (error) {
-            console.error('Error fetching weather data: ', error);
-        });
+        
+        $("#weatherDayOne").append(html);
+        }
+      }
+      })
+    .catch(function (error) {
+      console.error('Error fetching weather data: ', error);
+    });
 })
 
 //Issue Creation
