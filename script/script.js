@@ -17,35 +17,41 @@ var estimatedTime = document.getElementById("estimatedTime");
 var saveButton = $('#search');
 var city = $('.city')
 saveButton.click(function () {
-    var city = $('#cityInput').val();
-    var weatherAPI = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=84f583d3b70337f7a927c7209d583c78';
-    
-    console.log(city);
-    // console.log(geoCode);
+  var city = $('#cityInput').val();
+  var weatherAPI = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=84f583d3b70337f7a927c7209d583c78';
 
-    fetch(weatherAPI)
-        .then(function (repsonse) {
-            return repsonse.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            $("#weatherDayOne").empty()
-            const html = $(`
-               <div class="card col-3">
+  console.log(city);
+  // console.log(geoCode);
+
+  fetch(weatherAPI)
+    .then(function (repsonse) {
+      return repsonse.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      $("#weatherDayOne").empty()
+      for (let i = 0; i < data.list.length; i++) {
+        if (i % 8 === 0) {
+          var day = data.list[i]
+          const html = $(`
+               <div class="card col-2">
                     <div class="card-body">
-                        <h5 class="card-title">${data.city.name} ${data.list[0].dt_txt.split(' ')[0]} <img src="https://openweathermap.org/img/wn/${data.list[3].weather[0].icon}@2x.png" alt="img"></h5>
+                        <h5 class="card-title">${data.city.name} ${day.dt_txt.split(' ')[0]} <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="img"></h5>
                         <p>location: ${data.city.coord.lat} lat, ${data.city.coord.lon} lon </p>
-                        <p>Temp: ${data.list[0].main.temp}&#8457</p>
-                        <p>Wind: ${data.list[0].wind.speed} MPH</p>
-                        <p>humidity: ${data.list[0].main.humidity}%</p>
+                        <p>Temp: ${day.main.temp}&#8457</p>
+                        <p>Wind: ${day.wind.speed} MPH</p>
+                        <p>humidity: ${day.main.humidity}%</p>
                     </div>
                 </div>
             `)
-            $("#weatherDayOne").append(html);
-        })
-        .catch(function (error) {
-            console.error('Error fetching weather data: ', error);
-        });
+        
+        $("#weatherDayOne").append(html);
+        }
+      }
+      })
+    .catch(function (error) {
+      console.error('Error fetching weather data: ', error);
+    });
 })
 
 //Issue Creation
@@ -64,7 +70,7 @@ function addNewIssue() {
 
   if (workDay.value === "monday") {
     $("#mondayIssues").append(html)
-  } 
+  }
 
   else if (workDay.value == "tuesday") {
     $("#tuesdayIssues").append(html)
@@ -84,6 +90,6 @@ function addNewIssue() {
 };
 
 acceptEl.on("click", addNewIssue);
-acceptEl.on("click", function() {
-    console.log("clicked")
+acceptEl.on("click", function () {
+  console.log("clicked")
 })
