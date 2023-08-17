@@ -3,14 +3,20 @@
 
 
 //Issue Creation variable delcaration
-const value = document.querySelector("#hours");
-const input = document.querySelector("#estimatedTime");
+const sliderValue = document.querySelector("#hours");
+const sliderInput = document.querySelector("#estimatedTime");
 var acceptEl = $("#taskAccept");
 var denyEl = $("#taskReject");
 var workDay = document.getElementById("workDay");
 var issueType = document.getElementById("issueType");
 var assignedEmployee = document.getElementById("assignedEmployee");
 var estimatedTime = document.getElementById("estimatedTime");
+
+//Add new employee variable declaration
+var addEmployeeBtn = $("#addEmployee");
+var assignedEmployeeList = document.getElementById("#assignedEmployee");
+var fname = document.getElementById("#fname");
+var lname = document.getElementById("#lname");
 
 //Weather Search API
 
@@ -50,10 +56,10 @@ saveButton.click(function () {
 
 //Issue Creation
 
-value.textContent = "Estimated Work Hours: 20";
+sliderValue.textContent = "Estimated Work Hours: 20";
 
-input.addEventListener("input", (event) => {
-  value.textContent = `Estimated Work Hours: ${event.target.value}`;
+sliderInput.addEventListener("input", (event) => {
+  sliderValue.textContent = `Estimated Work Hours: ${event.target.value}`;
 });
 
 
@@ -84,6 +90,18 @@ function addNewIssue() {
 };
 
 acceptEl.on("click", addNewIssue);
+
 acceptEl.on("click", function() {
     console.log("clicked")
 })
+
+//Add new employees
+
+addEmployeeBtn.on ("click", function(){
+  var fname = document.querySelector('#fname').value;
+  var lname = document.querySelector("#lname").value;
+  $('#assignedEmployee').append($('<option>', {
+    value: lname,
+    text: `${fname} ${lname}`
+}));
+});
